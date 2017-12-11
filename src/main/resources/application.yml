@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: ydt-cms-service
+  datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+#      url: jdbc:mysql://10.0.127.12:3306/sodap
+      url: jdbc:mysql://rm-wz93lpf413992d6ob8.mysql.rds.aliyuncs.com:3306/sodap
+#      url: jdbc:mysql://localhost:3306/sodap
+      username: root
+      password: 6tfc^YHN
+#      password:
+
+      type: com.zaxxer.hikari.HikariDataSource
+      hikari:
+        connection-timeout: 600000
+        maximum-pool-size: 200
+#        minimum-idle: 20
+        max-lifetime: 1800000
+        idle-timeout: 600000
+        data-source-properties:
+          prepStmtCacheSize: 250
+          prepStmtCacheSqlLimit: 2048
+          cachePrepStmts: true
+          useServerPrepStmts: true
+
+server:
+  tomcat:
+#    max-threads: 2000
+#    min-spare-threads: 20
+  port: 18099
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 60
+  client:
+    service-url:
+      defaultZone: http://localhost:12000/eureka/
+    registry-fetch-interval-seconds: 5
+feign:
+  client:
+    config:
+      default:
+        errorDecoder: com.yidiantong.spring.boot.feign.YdtErrorDecoder
